@@ -13,11 +13,13 @@
           'https://play.google.com/store/apps/details?id=surveyparcelmlmupc.mlmupc.gov.kh';
         var iosUrl = 'https://apps.apple.com/kh/app/parcel-survey/id6633417335';
 
-        if (/android/i.test(userAgent)) {
+        // More comprehensive Android detection
+        if (/android|linux|adr|lineage|cyanogen|oxygen/i.test(userAgent)) {
           window.location.href = androidUrl;
         } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
           window.location.href = iosUrl;
         } else {
+          // Fallback for desktop or unrecognized mobile devices
           document.body.innerHTML = `
             <h2>Choose your platform:</h2>
             <p><a href="${androidUrl}">Android App</a></p>
